@@ -6,6 +6,19 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model files {
+  id              Int      @id @default(autoincrement())
+  nama_file       String?  @db.VarChar(255)
+  tgl_upload      DateTime @db.Date
+  file            String?  @db.VarChar(255)
+}
+
+model user {
+  id       Int     @id @default(autoincrement())
+  email    String? @db.VarChar(255)
+  password String? @db.VarChar(255)
 }
