@@ -27,19 +27,19 @@ export default function UserLayout({ children }) {
           </Typography>
         </div>
         <List>
-          <ListItem className="text-blue-500 hover:text-blue-900">
+          <ListItem>
             <ListItemPrefix>
-              <PresentationChartBarIcon className="h-5 w-5"/>
+              <PresentationChartBarIcon className="h-5 w-5" />
             </ListItemPrefix>
             Dashboard
           </ListItem>
-          <ListItem className="text-blue-500 hover:text-blue-900">
+          <ListItem>
             <ListItemPrefix>
               <ShoppingBagIcon className="h-5 w-5" />
             </ListItemPrefix>
             E-Commerce
           </ListItem>
-          <ListItem className="text-blue-500 hover:text-blue-900">
+          <ListItem>
             <ListItemPrefix>
               <InboxIcon className="h-5 w-5" />
             </ListItemPrefix>
@@ -54,19 +54,19 @@ export default function UserLayout({ children }) {
               />
             </ListItemSuffix>
           </ListItem>
-          <ListItem className="text-blue-500 hover:text-blue-900">
+          <ListItem>
             <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />
             </ListItemPrefix>
             Profile
           </ListItem>
-          <ListItem className="text-blue-500 hover:text-blue-900">
+          <ListItem>
             <ListItemPrefix>
               <Cog6ToothIcon className="h-5 w-5" />
             </ListItemPrefix>
             Settings
           </ListItem>
-          <ListItem className="text-blue-500 hover:text-blue-900">
+          <ListItem>
             <ListItemPrefix>
               <PowerIcon className="h-5 w-5" />
             </ListItemPrefix>
