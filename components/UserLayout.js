@@ -66,6 +66,7 @@ export default function UserLayout({ children }) {
             </ListItemPrefix>
             Settings
           </ListItem>
+          <hr className="my-2 border-blue-gray-50" />
           <ListItem>
             <ListItemPrefix>
               <PowerIcon className="h-5 w-5" />
