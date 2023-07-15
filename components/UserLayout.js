@@ -4,75 +4,70 @@ import {
   List,
   ListItem,
   ListItemPrefix,
-  ListItemSuffix,
-  Chip,
   Card,
+  Button,
 } from "@material-tailwind/react";
 import {
-  PresentationChartBarIcon,
-  ShoppingBagIcon,
-  UserCircleIcon,
-  Cog6ToothIcon,
-  InboxIcon,
   PowerIcon,
+  DocumentIcon,
+  HeartIcon,
+  ClockIcon,
+  LockClosedIcon,
 } from "@heroicons/react/24/solid";
+import { signOut, useSession } from "next-auth/react";
 
 export default function UserLayout({ children }) {
+  const { data: session } = useSession();
+
+  const handleLogout = async () => {
+    await signOut();
+    // Additional logic after logout, such as redirecting the user
+  };
+
   return (
     <div className="flex w-full bg-blue-gray-900">
       <Card className="flex flex-col w-64 min-h-screen p-3 bg-white shadow">
-        <div className="px-5 pt-5">
+        <div className="px-5 pt-5 pb-3">
           <Typography variant="h5" color="blue-gray">
             File Manager
           </Typography>
         </div>
-        <List>
+        <List className="text-sm">
           <ListItem>
             <ListItemPrefix>
-              <PresentationChartBarIcon className="h-5 w-5" />
+              <DocumentIcon className="h-5 w-5" />
             </ListItemPrefix>
-            Dashboard
+            File Saya
           </ListItem>
           <ListItem>
             <ListItemPrefix>
-              <ShoppingBagIcon className="h-5 w-5" />
+              <ClockIcon className="h-5 w-5" />
             </ListItemPrefix>
-            E-Commerce
+            Terbaru
           </ListItem>
           <ListItem>
             <ListItemPrefix>
-              <InboxIcon className="h-5 w-5" />
+              <HeartIcon className="h-5 w-5" />
             </ListItemPrefix>
-            Inbox
-            <ListItemSuffix>
-              <Chip
-                value="14"
-                size="sm"
-                variant="ghost"
-                color="blue-gray"
-                className="rounded-full"
-              />
-            </ListItemSuffix>
-          </ListItem>
-          <ListItem>
-            <ListItemPrefix>
-              <UserCircleIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Profile
-          </ListItem>
-          <ListItem>
-            <ListItemPrefix>
-              <Cog6ToothIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Settings
+            Favorit
           </ListItem>
           <hr className="my-2 border-blue-gray-50" />
           <ListItem>
             <ListItemPrefix>
-              <PowerIcon className="h-5 w-5" />
+              <LockClosedIcon className="h-5 w-5" />
             </ListItemPrefix>
-            Log Out
+            Ganti Kata Sandi
           </ListItem>
+          {session ? (
+            <ListItem>
+              <ListItemPrefix onClick={handleLogout}>
+                <PowerIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              Logout
+            </ListItem>
+          ) : (
+            <p>User is not authenticated</p>
+          )}
         </List>
       </Card>
       <div className="container mx-auto px-3 py-8 bg-blue-gray-900">
