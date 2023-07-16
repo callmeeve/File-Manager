@@ -69,9 +69,7 @@ const Home = ({files}) => {
               </div>
               <Typography variant="h6" color="white">{session.user.email}</Typography>
             </div>
-            
               <FileCard files={files} />
-           
           </div>
         </UserLayout>
       )}
