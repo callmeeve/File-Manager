@@ -9,7 +9,7 @@ import {
   Input
 } from "@material-tailwind/react";
 
-export default function Modals() {
+export default function UploadFile() {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(!open);

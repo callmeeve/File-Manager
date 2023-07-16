@@ -5,7 +5,7 @@ import FileCard from "@/components/FileCard";
 import { Button, Input, Typography } from "@material-tailwind/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import UserLayout from "@/components/UserLayout";
-import Upload from "@/components/UploadFile";
+import UploadFile from "@/components/UploadFile";
 
 const Home = ({files}) => {
   const { data: session } = useSession();
@@ -46,7 +46,7 @@ const Home = ({files}) => {
         <UserLayout>
           <div className="grid grid-cols-1 mx-5">
             <div className="lg:flex grid gap-y-5 lg:gap-y-0 items-center justify-between">
-              <Upload/>
+              <UploadFile/>
               <div className="relative flex w-full max-w-[24rem]">
                 <Input
                   type="text"
