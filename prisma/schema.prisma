@@ -7,15 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model files {
+model Files {
   id         Int      @id @default(autoincrement())
   nama_file  String?  @db.VarChar(255)
-  tgl_upload DateTime @db.Date
-  file       String?  @db.VarChar(255)
+  tgl_upload DateTime @default(now())
+  user       user     @relation(fields: [userId], references: [id])
+  userId     Int
 }
 
 model user {
   id       Int     @id @default(autoincrement())
   email    String? @unique(map: "Email_key") @db.VarChar(255)
   password String? @db.VarChar(255)
+  file     Files[]
 }

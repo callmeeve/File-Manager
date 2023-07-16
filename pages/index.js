@@ -3,11 +3,9 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import FileCard from "@/components/FileCard";
 import { Button, Input, Typography } from "@material-tailwind/react";
-import {
-  CloudArrowUpIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import UserLayout from "@/components/UserLayout";
+import Upload from "@/components/UploadFile";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -39,19 +37,19 @@ export default function Home() {
     }
   }, [session, router]);
 
-  const hiddenFileInput = React.useRef(null);
+  // const hiddenFileInput = React.useRef(null);
 
-  // Programatically click the hidden file input element
-  // when the Button component is clicked
-  const handleClick = (event) => {
-    hiddenFileInput.current.click();
-  };
-  // Call a function (passed as a prop from the parent component)
-  // to handle the user-selected file
-  const handleChange = (event) => {
-    const fileUploaded = event.target.files[0];
-    props.handleFile(fileUploaded);
-  };
+  // // Programatically click the hidden file input element
+  // // when the Button component is clicked
+  // const handleClick = (event) => {
+  //   hiddenFileInput.current.click();
+  // };
+  // // Call a function (passed as a prop from the parent component)
+  // // to handle the user-selected file
+  // const handleChange = (event) => {
+  //   const fileUploaded = event.target.files[0];
+  //   props.handleFile(fileUploaded);
+  // };
 
   const [file, setFile] = React.useState("");
   const onChange = ({ target }) => setFile(target.value);
@@ -62,7 +60,8 @@ export default function Home() {
         <UserLayout>
           <div className="grid grid-cols-1 mx-5">
             <div className="lg:flex grid gap-y-5 lg:gap-y-0 items-center justify-between">
-              <Button
+              <Upload/>
+              {/* <Button
                 variant="gradient"
                 className="flex items-center justify-center gap-3 w-44"
                 onClick={handleClick}
@@ -75,7 +74,7 @@ export default function Home() {
                   onChange={handleChange}
                   style={{ display: "none" }}
                 />
-              </Button>
+              </Button> */}
               <div className="relative flex w-full max-w-[24rem]">
                 <Input
                   type="text"
