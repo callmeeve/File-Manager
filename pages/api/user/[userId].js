@@ -18,7 +18,6 @@ const getUser = async (req, res) => {
           },
           select: {
             id: true,
-            role: true,
             email: true,
           },
         })
