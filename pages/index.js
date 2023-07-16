@@ -7,7 +7,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import UserLayout from "@/components/UserLayout";
 import Upload from "@/components/UploadFile";
 
-export default function Home() {
+const Home = ({files}) => {
   const { data: session } = useSession();
   const router = useRouter();
   const [myUser, setMyUser] = useState([]);
@@ -37,20 +37,6 @@ export default function Home() {
     }
   }, [session, router]);
 
-  // const hiddenFileInput = React.useRef(null);
-
-  // // Programatically click the hidden file input element
-  // // when the Button component is clicked
-  // const handleClick = (event) => {
-  //   hiddenFileInput.current.click();
-  // };
-  // // Call a function (passed as a prop from the parent component)
-  // // to handle the user-selected file
-  // const handleChange = (event) => {
-  //   const fileUploaded = event.target.files[0];
-  //   props.handleFile(fileUploaded);
-  // };
-
   const [file, setFile] = React.useState("");
   const onChange = ({ target }) => setFile(target.value);
 
@@ -61,20 +47,6 @@ export default function Home() {
           <div className="grid grid-cols-1 mx-5">
             <div className="lg:flex grid gap-y-5 lg:gap-y-0 items-center justify-between">
               <Upload/>
-              {/* <Button
-                variant="gradient"
-                className="flex items-center justify-center gap-3 w-44"
-                onClick={handleClick}
-              >
-                <CloudArrowUpIcon className="h-5 w-5" />
-                Upload File
-                <input
-                  type="file"
-                  ref={hiddenFileInput}
-                  onChange={handleChange}
-                  style={{ display: "none" }}
-                />
-              </Button> */}
               <div className="relative flex w-full max-w-[24rem]">
                 <Input
                   type="text"
@@ -97,15 +69,26 @@ export default function Home() {
               </div>
               <Typography variant="h6" color="white">{session.user.email}</Typography>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-4 items-center justify-center gap-x-6 gap-y-2">
-              <FileCard />
-              <FileCard />
-              <FileCard />
-              <FileCard />
-            </div>
+            
+              <FileCard files={files} />
+           
           </div>
         </UserLayout>
       )}
     </>
   );
 }
+
+export async function getServerSideProps() {
+  const res = await fetch('http://localhost:3000/api/file/all');
+  const files = await res.json();
+
+  return {
+    props: {
+      files,
+    },
+  };
+}
+
+export default Home;
+
