@@ -55,10 +55,10 @@ export default function UploadFile() {
   return (
     <>
       <Button onClick={handleOpen} variant="gradient">
-        Tambah Data
+        Upload File
       </Button>
       <Dialog size="md" open={open} handler={handleOpen}>
-        <DialogHeader>Tambah Folder</DialogHeader>
+        <DialogHeader>Tambah File</DialogHeader>
         <DialogBody divider>
           <form onSubmit={handleSubmit}>
             <input

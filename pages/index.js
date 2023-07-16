@@ -12,6 +12,21 @@ const Home = ({files}) => {
   const { data: session } = useSession();
   const router = useRouter();
   const [myUser, setMyUser] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSearch = async (searchTerm) => {
+    try {
+      const response = await fetch(`/api/file/byname?name=${searchTerm}`);
+      const files = await response.json();
+      setSearchResults(files);
+      setErrorMessage('');
+    } catch (error) {
+      console.error('Error searching files:', error);
+      setSearchResults([]);
+      setErrorMessage('Error occurred while searching files.');
+    }
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -45,13 +60,13 @@ const Home = ({files}) => {
           <div className="grid grid-cols-1 mx-5">
             <div className="lg:flex grid gap-y-5 lg:gap-y-0 items-center justify-between">
               <UploadFile/>
-              <SearchBar/>
+              <SearchBar onSearch={handleSearch}/>
               <div className="flex flex-row items-center">
                 <Typography variant="h6" color="white" className="text-sm mx-3">{session.user.email}</Typography>
                 <UserCircleIcon className="w-10 h-10 text-white"/>
               </div>
             </div>
-              <FileCard files={files} />
+              <FileCard files={searchResults.length > 0 ? searchResults : files} />
           </div>
         </UserLayout>
       )}

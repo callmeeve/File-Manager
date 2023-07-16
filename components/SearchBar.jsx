@@ -1,10 +1,13 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Button, Input } from "@material-tailwind/react";
-import React from "react";
+import React, {useState} from "react";
 
-const SearchBar = () => {
-    const [file, setFile] = React.useState("");
-    const onChange = ({ target }) => setFile(target.value);
+const SearchBar = ({ onSearch }) => {
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearch = () => {
+        onSearch(searchTerm);
+    };
 
     return (
         <>
@@ -12,9 +15,9 @@ const SearchBar = () => {
                 <Input
                     type="text"
                     label="Search"
-                    value={file}
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                     color="white"
-                    onChange={onChange}
                     className="pr-20"
                     containerProps={{
                         className: "min-w-0",
@@ -23,6 +26,7 @@ const SearchBar = () => {
                 <Button
                     size="sm"
                     color="white"
+                    onClick={handleSearch}
                     className="!absolute right-0.5 top-[2.3px] rounded"
                 >
                     <MagnifyingGlassIcon strokeWidth={2} className="h-5 w-5" />

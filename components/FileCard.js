@@ -9,10 +9,11 @@ import {
   DialogHeader,
   DialogBody,
   DialogFooter,
+  Input,
 } from "@material-tailwind/react";
 import {
-  RocketLaunchIcon,
   PencilSquareIcon,
+  DocumentIcon,
   TrashIcon,
 } from "@heroicons/react/24/solid";
 
@@ -86,11 +87,14 @@ const FileCard = ({ files }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 items-center justify-center gap-x-6 gap-y-2">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center justify-center gap-x-6 gap-y-2">
       {files.map((file) => (
         <Card className="mt-6 w-72 h-auto rounded-md" key={file.id}>
           <CardBody>
-            <RocketLaunchIcon className="text-blue-500 w-12 h-12 mb-4" />
+            <div className="flex items-center justify-center w-12 h-12 mb-4">
+              <DocumentIcon className="text-blue-500 w-10 h-10" />
+            </div>
+
             <Typography color="blue-gray" className="mb-2">
               {file.nama_file}
             </Typography>
@@ -105,7 +109,11 @@ const FileCard = ({ files }) => {
             >
               <PencilSquareIcon className="w-6 h-6" />
             </Button>
-            <Button size="sm" variant="text" onClick={() => handleDeleteFile(file.id)}>
+            <Button
+              size="sm"
+              variant="text"
+              onClick={() => handleDeleteFile(file.id)}
+            >
               <TrashIcon className="w-6 h-6" />
             </Button>
           </CardFooter>
@@ -113,20 +121,21 @@ const FileCard = ({ files }) => {
       ))}
       <Dialog size="sm" open={isDialogOpen} onClose={handleCloseDialog}>
         <DialogHeader>Update File Name</DialogHeader>
-        <DialogBody>
+        <DialogBody divider>
           {selectedFile && (
-            <Typography variant="paragraph">
+            <Typography variant="paragraph" className="mb-3">
               {selectedFile.nama_file}
             </Typography>
           )}
-          <input
+          <Input
+            size="md"
             type="text"
+            label="File Name"
             value={newFileName}
             onChange={handleFileNameChange}
-            placeholder="New File Name"
           />
         </DialogBody>
-        <DialogFooter>
+        <DialogFooter className="flex flex-row justify-end gap-3">
           <Button color="red" onClick={handleCloseDialog}>
             Cancel
           </Button>
