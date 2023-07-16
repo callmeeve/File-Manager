@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import FileCard from "@/components/FileCard";
-import { Button, Input, Typography } from "@material-tailwind/react";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { Typography } from "@material-tailwind/react";
 import UserLayout from "@/components/UserLayout";
 import UploadFile from "@/components/UploadFile";
+import SearchBar from "@/components/SearchBar";
 
 const Home = ({files}) => {
   const { data: session } = useSession();
@@ -37,9 +37,6 @@ const Home = ({files}) => {
     }
   }, [session, router]);
 
-  const [file, setFile] = React.useState("");
-  const onChange = ({ target }) => setFile(target.value);
-
   return (
     <>
       {session && (
@@ -47,27 +44,10 @@ const Home = ({files}) => {
           <div className="grid grid-cols-1 mx-5">
             <div className="lg:flex grid gap-y-5 lg:gap-y-0 items-center justify-between">
               <UploadFile/>
-              <div className="relative flex w-full max-w-[24rem]">
-                <Input
-                  type="text"
-                  label="Search"
-                  value={file}
-                  color="white"
-                  onChange={onChange}
-                  className="pr-20"
-                  containerProps={{
-                    className: "min-w-0",
-                  }}
-                />
-                <Button
-                  size="sm"
-                  color="white"
-                  className="!absolute right-0.5 top-[2.3px] rounded"
-                >
-                  <MagnifyingGlassIcon strokeWidth={2} className="h-5 w-5" />
-                </Button>
+              <SearchBar/>
+              <div className="flex flex-row items-center">
+                <Typography variant="h6" color="white">{session.user.email}</Typography>
               </div>
-              <Typography variant="h6" color="white">{session.user.email}</Typography>
             </div>
               <FileCard files={files} />
           </div>
