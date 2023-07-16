@@ -60,7 +60,6 @@ export default function UploadFile() {
         <DialogHeader>Tambah Folder</DialogHeader>
         <DialogBody divider>
           <form onSubmit={handleSubmit}>
-            <Input size="md" label="Nama Folder" />
             <input
               type="file" id="file" onChange={handleFileChange}
               class="cursor-pointer my-3 w-full text-sm text-slate-500 file:cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-400 file:text-white hover:file:bg-violet-100"

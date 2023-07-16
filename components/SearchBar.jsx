@@ -1,5 +1,6 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Button, Input } from "@material-tailwind/react";
+import React from "react";
 
 const SearchBar = () => {
     const [file, setFile] = React.useState("");

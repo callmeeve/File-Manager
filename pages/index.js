@@ -6,6 +6,7 @@ import { Typography } from "@material-tailwind/react";
 import UserLayout from "@/components/UserLayout";
 import UploadFile from "@/components/UploadFile";
 import SearchBar from "@/components/SearchBar";
+import { UserCircleIcon } from "@heroicons/react/24/outline";
 
 const Home = ({files}) => {
   const { data: session } = useSession();
@@ -46,7 +47,8 @@ const Home = ({files}) => {
               <UploadFile/>
               <SearchBar/>
               <div className="flex flex-row items-center">
-                <Typography variant="h6" color="white">{session.user.email}</Typography>
+                <Typography variant="h6" color="white" className="text-sm mx-3">{session.user.email}</Typography>
+                <UserCircleIcon className="w-10 h-10 text-white"/>
               </div>
             </div>
               <FileCard files={files} />
