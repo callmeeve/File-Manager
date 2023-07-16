@@ -2,13 +2,12 @@ import { prisma } from "@/config/db";
 
 
 export default function handler(req, res) {
-  const { role, email, password, id } = req.body;
+  const { email, password, id } = req.body;
   const new_userdata = { 
-    role: role,
     email: email,
     password: password,
   };
-  if (role && email && password && id) {
+  if ( email && password && id) {
     prisma.user.update({
       where: {
         id: parseInt(id),
