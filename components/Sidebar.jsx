@@ -19,6 +19,7 @@ import Link from "next/link";
 import Modals from "@/components/Modals"
 
 import { MdDashboard } from "react-icons/md"
+import { BsFolderFill } from "react-icons/bs"
 
 export default function Example() {
     return (
@@ -43,7 +44,7 @@ export default function Example() {
                 <Link href="/folder-saya">
                     <ListItem>
                         <ListItemPrefix>
-                            <ShoppingBagIcon className="h-5 w-5" />
+                            <BsFolderFill size={20} />
                         </ListItemPrefix>
                         Folder Saya
                     </ListItem>

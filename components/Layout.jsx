@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
     <div className="min-h-screen">
         <Sidebar />
         <Header />
-        <div className="ml-80 mr-5 mt-16">
+        <div className="ml-80 mr-5 mt-10">
         <Typography variant="h5">Files</Typography>
             {children}
         </div>
