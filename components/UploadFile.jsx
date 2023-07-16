@@ -6,7 +6,8 @@ import {
   DialogHeader,
   DialogBody,
   DialogFooter,
-  Input
+  Input,
+  Typography
 } from "@material-tailwind/react";
 
 export default function UploadFile() {
@@ -62,7 +63,7 @@ export default function UploadFile() {
           <form onSubmit={handleSubmit}>
             <input
               type="file" id="file" onChange={handleFileChange}
-              class="cursor-pointer my-3 w-full text-sm text-slate-500 file:cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-400 file:text-white hover:file:bg-violet-100"
+              className="cursor-pointer my-3 w-full text-sm text-slate-500 file:cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-400 file:text-white hover:file:bg-violet-100"
             />
             <Input
               size="md"
@@ -87,7 +88,9 @@ export default function UploadFile() {
             </div>
           </form>
         </DialogBody>
-        <DialogFooter/>
+        <DialogFooter>
+          <Typography>File Manager</Typography>
+        </DialogFooter>
       </Dialog>
     </>
   );

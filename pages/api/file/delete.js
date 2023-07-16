@@ -1,16 +1,19 @@
 import { prisma } from '@/config/db';
 
 export default async function handler(req, res) {
-  if (req.method !== 'GET') {
+  if (req.method !== 'DELETE') {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
+  const { id } = req.body;
+
   try {
-    const files = await prisma.files.findMany({
-      include: { user: true },
+    // Delete the file based on the provided ID
+    const deletedFile = await prisma.files.delete({
+      where: { id },
     });
 
-    res.status(200).json(files);
+    res.status(200).json(deletedFile);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
