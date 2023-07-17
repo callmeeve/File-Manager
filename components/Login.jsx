@@ -36,7 +36,7 @@ export default function LoginForm() {
                     Selamat Datang 👋
                 </Typography>
                 <Typography color="gray" className="mt-1 font-normal">
-                    Silahkan login terlebih dahulu
+                    Silahkan masuk terlebih dahulu
                 </Typography>
                 <form onSubmit={onSubmit} className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
                     <div className="mb-4 flex flex-col gap-6">
@@ -44,7 +44,7 @@ export default function LoginForm() {
                         <Input type="password" size="lg" label="Password" id="password" />
                     </div>
                     <Button type="submit" className="mt-6" fullWidth>
-                        Login
+                        Masuk
                     </Button>
                     <Typography color="gray" className="mt-4 text-center font-normal">
                         Belum punya akun?{" "}

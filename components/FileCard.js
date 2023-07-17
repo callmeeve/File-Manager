@@ -17,7 +17,7 @@ import {
   TrashIcon,
 } from "@heroicons/react/24/solid";
 
-const FileCard = ({ files }) => {
+const FileCard = ({ files, currentUser  }) => {
   const [newFileName, setNewFileName] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -88,37 +88,45 @@ const FileCard = ({ files }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center justify-center gap-x-6 gap-y-2">
-      {files.map((file) => (
-        <Card className="mt-6 w-72 h-auto rounded-md" key={file.id}>
-          <CardBody>
-            <div className="flex items-center justify-center w-12 h-12 mb-4">
-              <DocumentIcon className="text-blue-500 w-10 h-10" />
-            </div>
+      {files.map((file) => {
+        // Cek apakah file.user.email sama dengan email pengguna yang login
+        if (file.user.email === currentUser.email) {
+          return (
+            <Card className="mt-6 w-72 h-auto rounded-md" key={file.id}>
+              <CardBody>
+                <div className="flex items-center justify-center w-12 h-12 mb-4">
+                  <DocumentIcon className="text-blue-500 w-10 h-10" />
+                </div>
 
-            <Typography color="blue-gray" className="mb-2">
-              {file.nama_file}
-            </Typography>
-            <Typography variant="paragraph">{file.tgl_upload}</Typography>
-            <Typography variant="paragraph">{file.user.email}</Typography>
-          </CardBody>
-          <CardFooter className="flex flex-row justify-start p-3 my-2">
-            <Button
-              size="sm"
-              variant="text"
-              onClick={() => handleOpenDialog(file)}
-            >
-              <PencilSquareIcon className="w-6 h-6" />
-            </Button>
-            <Button
-              size="sm"
-              variant="text"
-              onClick={() => handleDeleteFile(file.id)}
-            >
-              <TrashIcon className="w-6 h-6" />
-            </Button>
-          </CardFooter>
-        </Card>
-      ))}
+                <Typography color="blue-gray" className="mb-2">
+                  {file.nama_file}
+                </Typography>
+                <Typography variant="paragraph">{file.tgl_upload}</Typography>
+                <Typography variant="paragraph">{file.user.email}</Typography>
+              </CardBody>
+              <CardFooter className="flex flex-row justify-start p-3 my-2">
+                <Button
+                  size="sm"
+                  variant="text"
+                  onClick={() => handleOpenDialog(file)}
+                >
+                  <PencilSquareIcon className="w-6 h-6" />
+                </Button>
+                <Button
+                  size="sm"
+                  variant="text"
+                  onClick={() => handleDeleteFile(file.id)}
+                >
+                  <TrashIcon className="w-6 h-6" />
+                </Button>
+              </CardFooter>
+            </Card>
+          );
+        } else {
+          return null; // Jika bukan file pengguna yang login, tidak ditampilkan
+        }
+      })}
+
       <Dialog size="sm" open={isDialogOpen} onClose={handleCloseDialog}>
         <DialogHeader>Update File Name</DialogHeader>
         <DialogBody divider>

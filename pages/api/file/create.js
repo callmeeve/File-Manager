@@ -1,6 +1,7 @@
 import { prisma } from '@/config/db';
 import multer from 'multer';
 import path from 'path';
+import { getSession } from 'next-auth/react';
 
 export const config = {
   api: {
@@ -26,12 +27,17 @@ const upload = multer({
 export default async function handler(req, res) {
   try {
     if (req.method === 'POST') {
+      const session = await getSession({ req });
+
+      if (!session) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
+
       upload.single('file')(req, res, async (err) => {
         if (err) {
           return res.status(400).json({ error: err.message });
         }
 
-        const { userId } = req.body;
         const { filename, size } = req.file;
         const url = `/files/${filename}`;
 
@@ -40,7 +46,7 @@ export default async function handler(req, res) {
             data: {
               nama_file: filename,
               tgl_upload: new Date(),
-              user: { connect: { id: parseInt(userId) } },
+              user: { connect: { id: session.user.id } },
             },
           });
 

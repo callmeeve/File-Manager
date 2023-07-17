@@ -66,7 +66,7 @@ const Home = ({files}) => {
                 <UserCircleIcon className="w-10 h-10 text-white"/>
               </div>
             </div>
-              <FileCard files={searchResults.length > 0 ? searchResults : files} />
+              <FileCard files={searchResults.length > 0 ? searchResults : files} currentUser={session.user}  />
           </div>
         </UserLayout>
       )}
