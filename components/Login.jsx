@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import Swal from 'sweetalert2'
