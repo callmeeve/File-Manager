@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    const { role, email, password } = req.body;
+    const { email, password } = req.body;
 
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -11,7 +11,6 @@ export default async function handler(req, res) {
     try {
       const newUser = await prisma.user.create({
         data: {
-          role: role,
           email: email,
           password: hashedPassword,
         },
