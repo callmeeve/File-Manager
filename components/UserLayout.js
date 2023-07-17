@@ -45,12 +45,6 @@ export default function UserLayout({ children }) {
             </ListItemPrefix>
             Terbaru
           </ListItem>
-          <ListItem>
-            <ListItemPrefix>
-              <HeartIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Favorit
-          </ListItem>
           <hr className="my-2 border-blue-gray-50" />
           <ListItem>
             <ListItemPrefix>
