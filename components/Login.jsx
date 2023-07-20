@@ -31,7 +31,7 @@ export default function LoginForm() {
 
     return (
         <div className="min-h-screen flex items-center justify-center">
-            <Card color="transparent" shadow={true} className="px-5 py-6">
+            <Card color="white" shadow={true} className="px-5 py-6">
                 <Typography variant="h4" color="blue-gray">
                     Selamat Datang 👋
                 </Typography>
