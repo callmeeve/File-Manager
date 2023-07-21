@@ -6,9 +6,10 @@ import { Typography } from "@material-tailwind/react";
 import UserLayout from "@/components/UserLayout";
 import UploadFile from "@/components/UploadFile";
 import SearchBar from "@/components/SearchBar";
-import { UserCircleIcon } from "@heroicons/react/24/outline";
+import { UserCircleIcon } from "@heroicons/react/24/solid";
 
 const Home = ({files}) => {
+  console.log(files)
   const { data: session } = useSession();
   const router = useRouter();
   const [myUser, setMyUser] = useState([]);
@@ -42,7 +43,7 @@ const Home = ({files}) => {
     fetchUser();
   }, []);
 
-  console.log(myUser);
+  // console.log(myUser);
 
   useEffect(() => {
     if (session == null) {
@@ -66,6 +67,17 @@ const Home = ({files}) => {
                 <UserCircleIcon className="w-10 h-10 text-white"/>
               </div>
             </div>
+            {/* <div className="grid grid-cols-3">
+              {files.map((item) => {
+                if (item.user.email === currentUser.email) {
+                return (
+                  <FileItem key={item.id} title={item.nama_files} email={item.email} date={item.date} currentUser={session.user} />
+                );
+                }else {
+                  return null; // Jika bukan file pengguna yang login, tidak ditampilkan
+                }
+              })}
+            </div> */}
               <FileCard files={searchResults.length > 0 ? searchResults : files} currentUser={session.user}  />
           </div>
         </UserLayout>

@@ -15,6 +15,7 @@ import {
   LockClosedIcon,
 } from "@heroicons/react/24/solid";
 import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 
 export default function UserLayout({ children }) {
   const { data: session } = useSession();
@@ -33,25 +34,31 @@ export default function UserLayout({ children }) {
           </Typography>
         </div>
         <List className="text-sm">
-          <ListItem>
-            <ListItemPrefix>
-              <DocumentIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            File Saya
-          </ListItem>
-          <ListItem>
-            <ListItemPrefix>
-              <ClockIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Terbaru
-          </ListItem>
+          <Link href="/">
+            <ListItem>
+              <ListItemPrefix>
+                <DocumentIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              File Saya
+            </ListItem>
+          </Link>
+          <Link href="/terbaru">
+            <ListItem>
+              <ListItemPrefix>
+                <ClockIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              Terbaru
+            </ListItem>
+          </Link>
           <hr className="my-2 border-blue-gray-50" />
-          <ListItem>
-            <ListItemPrefix>
-              <LockClosedIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Ganti Kata Sandi
-          </ListItem>
+          <Link href="/gantipassword">
+            <ListItem>
+              <ListItemPrefix>
+                <LockClosedIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              Ganti Kata Sandi
+            </ListItem>
+          </Link>
           {session ? (
             <ListItem>
               <ListItemPrefix onClick={handleLogout}>
