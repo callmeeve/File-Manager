@@ -42,14 +42,6 @@ export default function UserLayout({ children }) {
               File Saya
             </ListItem>
           </Link>
-          <Link href="/terbaru">
-            <ListItem>
-              <ListItemPrefix>
-                <ClockIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              Terbaru
-            </ListItem>
-          </Link>
           <hr className="my-2 border-blue-gray-50" />
           <Link href="/gantipassword">
             <ListItem>
